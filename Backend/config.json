@@ -1,0 +1,15 @@
+{
+    "menu": [
+        ["Home", "/home", ""]
+        , ["Play", "/play", ""]
+        , ["Create", "/make", ""]
+        , ["Profile", "/profile", ""]
+        , ["GitHub", "https://github.com/JakobusV/madOnline", "_blank"]
+    ] ,
+    "profile-dropdown": [
+        ["Your Libs", "/profile", ""]
+        , ["Liked Libs", "/profile", ""]
+        , ["Settings", "/profile", ""]
+        , ["Logout", "/login", ""]
+    ]
+}

@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+    div(id="login-form" class="formPlus")
+        form(action='/home')
+            p Username:
+                br
+                input(type="text" name='username')
+            p Password:
+                br
+                input(type="text" name='password')
+            p 
+                input(type="submit" value='Login')
+        div 
+            h4="or"
+        form(action="/join") 
+            input(type="submit" value="Create New Account")

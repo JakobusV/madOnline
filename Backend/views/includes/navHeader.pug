@@ -1,0 +1,7 @@
+header 
+    div(class="nav-options")
+        a(href="/home")
+            img(class="menu_img" src='/images/mloLogo.png' alt="Mad-Lib Online Logo" width="150px")
+        each item in config.menu 
+            a(class="nostyle" href=item[1] target=item[2])
+                    div(class='menu_item')=item[0]
