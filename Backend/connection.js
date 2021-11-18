@@ -28,3 +28,5 @@ connection.on("connect", err => {
 });
 
 connection.connect();
+
+//To test in console, in the madOnline dir "node ./Backend/connection.js"
