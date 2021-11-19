@@ -1,4 +1,6 @@
-let connection = new connection();
+import {returnConnection} from './connection.js';
+
+let connection = returnConnection();
 
 connection.on("connect", err => {
     if (err) {
