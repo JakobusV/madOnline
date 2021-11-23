@@ -1,10 +1,26 @@
 const config = require('../config.json');
+const logAu = require('../hellohahaha/loginAuth');
 
 exports.login = (req, res) => {
+    // logAu.test();
     res.render('login', {
         title: 'Mad-Login'
         , config
     });
+}
+
+exports.loginSubmit = (req, res) => {
+    jj = logAu.checkLogin(req.body.username, req.body.password);
+    
+    if(jj > 0) {
+        res.redirect('home');
+    } else {
+
+        res.render('login', {
+            title: 'Mad-Login'
+            , config
+        });
+    }
 }
 
 exports.home = (req, res) => {
