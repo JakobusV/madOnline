@@ -4,4 +4,23 @@ block navHeader
     include includes/navHeader.pug
 
 block content 
-    h3="Hey this is me."
+    div(class='header')
+        h3="It's your profile"
+    div(class='edit-profile-btn')
+        input(class='profile-button' id='edit-profile' type='submit' value='Edit Profile')
+        
+    div(class='content')
+        h2='Liked Libs'
+        table(class='profile-table')
+            thead
+                tr
+                    th Name 
+                    th Creator 
+                tr 
+                    td A day at the zoo 
+                    td Mad-Liberace
+    div(class='content')
+        p This is where you can see your saved Mad-libs
+   
+        
+    

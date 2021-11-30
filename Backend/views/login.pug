@@ -1,6 +1,8 @@
 extends layout 
 
 block content 
+    div(class='header')
+        h3 Mad-Libs Online
     div(id="login-form" class="formPlus")
         form(action='/home')
             p Username:
@@ -10,8 +12,8 @@ block content
                 br
                 input(type="text" name='password')
             p 
-                input(type="submit" value='Login')
+                input(class='login-btns' type="submit" value='Login')
         div 
             h4="or"
         form(action="/join") 
-            input(type="submit" value="Create New Account")
+            input(class='login-btns' type="submit" value="Create New Account")

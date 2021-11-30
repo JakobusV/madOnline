@@ -2,3 +2,15 @@ extends layout
 
 block navHeader 
     include includes/navHeader.pug
+    h3(class='header')="Create Your own Mad-Lib!"
+        div(class='instructions')
+            p INSTRUCTIONS 
+            p Use the text box below to write out your story. Where you want to have a blank space type %% and the type of word.
+            p For example: "Today at the zoo I saw the %adjective% monkey!"
+        div
+            p TITLE
+            input(class='title' id='madlib-title' type='text')
+        div(class='text-box-create')
+            textarea(rows='9' cols='20' class='create-lib-box')
+        div
+            input(class='create-lib-button' id='new-lib' type='submit' value='Create Mad-Lib!')
