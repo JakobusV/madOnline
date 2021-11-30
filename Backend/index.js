@@ -2,6 +2,7 @@ const express = require('express');
 const pug = require('pug');
 const path = require('path');
 const routes = require('./routes/routes');
+const expressSession = require('express-session');
 
 const app = express();
 
@@ -10,7 +11,37 @@ app.set('views', __dirname + '/views');
 
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.use(expressSession({
+    secret: 'yoMama',
+    saveUninitialized: true,
+    resave: true
+}));
+
+const urlencodedParser = express.urlencoded({
+    extended: false
+});
+
+const checkAuth = (req, res, next) => {
+    if(req.session.user && req.session.user.isAuthenticated) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
+
 app.get('/', routes.login);
+app.post('/', urlencodedParser, (req, res) => {
+    console.log(req.body.username);
+    // //if(<CHECK FOR USERNAME IN DB MATCHING req.body.username>)
+    //     //if(<DB USER's PASSWORD> == req.body.password)
+    //         req.session.user = {
+    //             isAuthenticated: true,
+    //             username: req.body.username
+    //         }
+    //         res.redirect('/home');
+    //     // else
+    //         res.redirect('/');
+})
 app.get('/join', routes.createNewUser);
 app.get('/home', routes.home);
 app.get('/profile', routes.profile);
