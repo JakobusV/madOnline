@@ -1,10 +1,25 @@
 const config = require('../config.json');
+const loginAuth = require('../scripts/loginAuth');
 
 exports.login = (req, res) => {
+    // logAu.test();
     res.render('login', {
         title: 'Mad-Login'
         , config
     });
+}
+
+exports.loginSubmit = (req, res) => {
+    // loginAuth.checkLogin(req, res);
+    
+    // if(checkloginSuccess > 0) {//SUCCESSFUL LOGIN
+    //     res.redirect('home');
+    // } else {//FAILED LOGIN
+    //     res.render('login', {
+    //         title: 'Mad-Login'
+    //         , config
+    //     });
+    // }
 }
 
 exports.home = (req, res) => {

@@ -23,7 +23,7 @@ connection.on("connect", err => {
     if (err) {
         console.error(err.message);
     } else {
-        console.log("Working!");
+        console.log("Working! :: Connection");
     }
 });
 
