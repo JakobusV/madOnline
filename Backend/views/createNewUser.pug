@@ -1,1 +1,32 @@
 extends layout 
+
+block content 
+    div(class='header')
+        h3 Mad-Libs Online
+    div(id="create-form" class="create-form")
+        form(action='/join' method='post')
+            p Username:
+                br
+                input(type="text" name='username')
+            p Password:
+                br
+                input(type="text" name='password')
+            p Confirm Password:
+                br
+                input(type="text" name='password')
+            p Bio 
+                br
+                textarea(rows='5' cols='24')
+            label(for='pfp') Profile Picture Selection
+                select(name='pfp' class='pfp')
+                    option 1
+                    option 2
+                    option 3
+                    option 4
+                    option 5
+                    option 6
+                    option 7
+                br
+                br
+
+            input(class='login-btns' type="submit" value='Create Account')
