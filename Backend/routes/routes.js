@@ -1,5 +1,5 @@
 const config = require('../config.json');
-const logAu = require('../hellohahaha/loginAuth');
+const loginAuth = require('../scripts/loginAuth');
 
 exports.login = (req, res) => {
     // logAu.test();
@@ -10,17 +10,16 @@ exports.login = (req, res) => {
 }
 
 exports.loginSubmit = (req, res) => {
-    jj = logAu.checkLogin(req.body.username, req.body.password);
+    // loginAuth.checkLogin(req, res);
     
-    if(jj > 0) {
-        res.redirect('home');
-    } else {
-
-        res.render('login', {
-            title: 'Mad-Login'
-            , config
-        });
-    }
+    // if(checkloginSuccess > 0) {//SUCCESSFUL LOGIN
+    //     res.redirect('home');
+    // } else {//FAILED LOGIN
+    //     res.render('login', {
+    //         title: 'Mad-Login'
+    //         , config
+    //     });
+    // }
 }
 
 exports.home = (req, res) => {
