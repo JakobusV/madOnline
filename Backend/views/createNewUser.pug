@@ -4,7 +4,7 @@ block content
     div(class='header')
         h3 Mad-Libs Online
     div(id="create-form" class="create-form")
-        form(action='/join' method='post')
+        form(action='/join' method='post' id="newUser")
             p Username:
                 br
                 input(type="text" name='username')
@@ -16,16 +16,16 @@ block content
                 input(type="text" name='confPass')
             p Bio 
                 br
-                textarea(rows='5' cols='24')
+                textarea(rows='5' cols='24' form="newUser" maxLength="300" name="bio")
             label(for='pfp') Profile Picture Selection
                 select(name='pfp' class='pfp')
-                    option 1
-                    option 2
-                    option 3
-                    option 4
-                    option 5
-                    option 6
-                    option 7
+                    option(value="1") 1
+                    option(value="2") 2
+                    option(value="3") 3
+                    option(value="4") 4
+                    option(value="5") 5
+                    option(value="6") 6
+                    option(value="7") 7
                 br
                 br
 

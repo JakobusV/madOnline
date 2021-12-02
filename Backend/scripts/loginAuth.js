@@ -38,7 +38,8 @@ exports.checkLogin = (req, res) => {
                                 if(result) {
                                     req.session.user = {
                                         isAuthenticated: true,
-                                        username: req.body.username
+                                        id: rows[0][0].value,
+                                        username: rows[0][1].value
                                     }
                                     console.log("SUCCESS :: CORRECT PASSWORD");
                                     res.redirect('/profile');
