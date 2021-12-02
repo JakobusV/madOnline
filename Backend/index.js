@@ -13,8 +13,6 @@ app.set('views', __dirname + '/views');
 
 app.use(express.static(path.join(__dirname, '/public')));
 
-// app.use(loginAuth.checkAuth);
-
 app.use(expressSession({
     secret: 'yoMama',
     saveUninitialized: true,
@@ -26,12 +24,15 @@ const urlencodedParser = express.urlencoded({
 });
 
 app.get('/', routes.login);
-app.post('/', urlencodedParser, loginAuth.checkLogin)
+app.post('/', urlencodedParser, loginAuth.checkLogin);
 app.get('/join', routes.createNewUser);
 app.post('/join', urlencodedParser, newUser.addUser);
 app.get('/home', routes.home);
 app.get('/profile', routes.profile);
 app.get('/play', routes.play);
 app.get('/make', routes.createLib);
+app.post('/make', (req, res) => {
+    res.redirect('/home');
+})
 
 app.listen(3000);
