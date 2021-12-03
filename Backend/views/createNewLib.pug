@@ -5,8 +5,11 @@ block navHeader
     h3(class='header')="Create Your own Mad-Lib!"
         div(class='instructions')
             p INSTRUCTIONS 
-            p Use the text box below to write out your story. Where you want to have a blank space type %% and the type of word.
-            p For example: "Today at the zoo I saw the %adjective% monkey!"
+            p Use the text box below to write out your story. Where you want to have a blank space type && and the type of word between.
+            p For example: The elephants at the zoo had very &adjective& trunks.
+            p Remember your Mad-lib must under 400 words
+            p OPTIONAL: Add a hint to the word by typing ':hint' after your word.
+            p For example: I got a phone call from &noun: Famous Person& asking for $10.
         div
             p TITLE
             input(class='title' id='madlib-title' type='text')

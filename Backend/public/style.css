@@ -48,7 +48,7 @@
                 letter-spacing: 2px;
                 text-align: center;
                 position: relative;
-                transition: all 0.2s ease-in-out;
+                /*transition: all 0.2s ease-in-out;*/
 }
 
             .menu_item:hover {
@@ -90,7 +90,7 @@
             color: #333333;
             background-color: transparent;
             text-align: center;
-            transition: all 0.2s;
+            /*transition: all 0.2s;*/
         }
 
         .login-btns:hover {
@@ -134,17 +134,22 @@
         }
 
 /*================================= PLAY PAGE CSS ========================================*/
-/*================================= CREATE PAGE CSS ======================================*/
-        .create-lib-box {
-            border: 2px solid #333;
-            width: 70%;
-            height: 50%;
+
+        .play-content {
+            text-align: center;
+            border: 3px solid #FFF;
+            border-radius: 8px;
+            padding: 5px;
+            width: 30%;
+            margin: auto;
+            margin-top: 15px;
+            font-size: 18px;
         }
 
-        .create-lib-button {
+        .play-madlib {
             display: inline-block;
-            padding: 0.35em 1.2em;
-            border: 2px solid #aedb81;
+            padding: 10px;
+            border: 2px solid #c7aee8;
             margin: 0 0.3em 0.3em 0;
             border-radius: 8px;
             box-sizing: border-box;
@@ -152,13 +157,41 @@
             color: #333333;
             background-color: transparent;
             text-align: center;
-            transition: all 0.2s;
+            /*transition: all 0.2s;*/
+        }
+
+        .play-madlib:hover {
+            color: #FFF;
+            background-color: #c7aee8;
+            box-shadow: 0 2px 10px #c7aee8;
+            border-color: #FFF;
+            cursor: pointer;
+        }
+/*================================= CREATE PAGE CSS ======================================*/
+        .create-lib-box {
+            border: 2px solid #333;
+            font-size: 60px;
+            font-weight: bolder;
+        }
+
+        .create-lib-button {
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid #ffe77a;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: #333333;
+            background-color: transparent;
+            text-align: center;
+            /*transition: all 0.2s;*/
         }
         
         .create-lib-button:hover {
-            color: #FFF;
-            background-color: #aedb81;
-            box-shadow: 0 2px 10px #aedb81;
+            color: #000;
+            background-color: #ffe77a;
+            box-shadow: 0 2px 10px #ffe77a;
             border-color: #FFF;
             cursor: pointer;
         }
@@ -169,8 +202,15 @@
             width: 70%;
             margin: auto;
             margin-top: 15px;
-            font-size: 16px;
+            font-size: 20px;
+            font-weight: bold;
             font-family: 'Outfit', sans-serif;
+        }
+
+        .title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
         }
 /*================================= PROFILE PAGE CSS ======================================*/
         .content {
@@ -228,6 +268,13 @@
         .edit-profile-button {
             text-align: center;
         }
+        /*============================= PROFILE TABLE CSS ===========================*/
 
-    
-        
+        th {
+            padding: 20px 15px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+        }

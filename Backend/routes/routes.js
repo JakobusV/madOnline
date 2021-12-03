@@ -43,6 +43,13 @@ exports.play = (req, res) => {
     });
 }
 
+exports.viewLib = (req, res) => {
+    res.render('viewLib', {
+        title: "View Madlib"
+        , config
+    });
+}
+
 exports.createLib = (req, res) => {
     res.render('createNewLib', {
         title: "Mad-Lib maker"

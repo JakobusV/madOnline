@@ -32,6 +32,7 @@ app.post('/join', urlencodedParser, newUser.addUser);
 app.get('/home', routes.home);
 app.get('/profile', routes.profile);
 app.get('/play', routes.play);
+app.get('/viewLib', routes.viewLib);
 app.get('/make', routes.createLib);
 
 app.listen(3000);
