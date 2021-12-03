@@ -6,6 +6,8 @@ const expressSession = require('express-session');
 const loginAuth = require('./scripts/loginAuth');
 const newUser = require('./scripts/newUser');
 const newLib = require('./scripts/newLib');
+const playLib = require('./scripts/playLib');
+
 
 const app = express();
 
@@ -39,6 +41,7 @@ app.post('/join', urlencodedParser, newUser.addUser);
 app.get('/home', checkAuth, routes.home);
 app.get('/profile', checkAuth, routes.profile);
 app.get('/play', checkAuth, routes.play);
+app.post('/play', urlencodedParser, playLib.submitDoneLib);
 app.get('/make', checkAuth, routes.createLib);
 app.post('/make', urlencodedParser, checkAuth, newLib.addLib);
 app.get('/logout', checkAuth, (req, res) => {
