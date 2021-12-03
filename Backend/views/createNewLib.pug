@@ -3,17 +3,18 @@ extends layout
 block navHeader 
     include includes/navHeader.pug
     h3(class='header')="Create Your own Mad-Lib!"
-        div(class='instructions')
-            p INSTRUCTIONS 
-            p Use the text box below to write out your story. Where you want to have a blank space type && and the type of word between.
-            p For example: The elephants at the zoo had very &adjective& trunks.
-            p Remember your Mad-lib must under 400 words
-            p OPTIONAL: Add a hint to the word by typing ':hint' after your word.
-            p For example: I got a phone call from &noun: Famous Person& asking for $10.
-        div
-            p TITLE
-            input(class='title' id='madlib-title' type='text')
-        div(class='text-box-create')
-            textarea(rows='9' cols='20' class='create-lib-box')
-        div
-            input(class='create-lib-button' id='new-lib' type='submit' value='Create Mad-Lib!')
+        form(action="/make", method="post" id="create-lib") 
+            div(class='instructions')
+                p INSTRUCTIONS 
+                p Use the text box below to write out your story. Where you want to have a blank space type && and the type of word between.
+                p For example: The elephants at the zoo had very &adjective& trunks.
+                p Remember your Mad-lib must under 400 words
+                p OPTIONAL: Add a hint to the word by typing ':hint' after your word.
+                p For example: I got a phone call from &noun: Famous Person& asking for $10.
+            div
+                p TITLE
+                input(class='title' id='madlib-title' type='text' name='title')
+            div(class='text-box-create')
+                textarea(rows='9' cols='20' class='create-lib-box' form="create-lib" name='content' maxLength="400")
+            div
+                input(class='create-lib-button' id='new-lib' type='submit' value='Create Mad-Lib!')

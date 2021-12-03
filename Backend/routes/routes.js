@@ -57,7 +57,7 @@ exports.createLib = (req, res) => {
     });
 }
 
-exports.profile = (req, res) => {
+exports.profile = async (req, res) => {
     res.render('profile', {
         title: "Mad-Profile"
         , config

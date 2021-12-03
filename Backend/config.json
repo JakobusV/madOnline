@@ -4,6 +4,7 @@
         , ["Play", "/play", "", "#0FF"]
         , ["Create", "/make", "", "#FF0"]
         , ["Profile", "/profile", "", "#FF1"]
+        , ["Logout", "/logout", "", "#F1F"]
         , ["GitHub", "https://github.com/JakobusV/madOnline", "_blank", "#F00"]
     ] ,
     "profile-dropdown": [

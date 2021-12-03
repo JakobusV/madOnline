@@ -22,7 +22,7 @@ const config = {
 const options = { keepNulls: true };
 
 exports.addUser = (req, res) => {
-    if(req.body.password === null || req.body.password == "blank") {
+    if(req.body.password === null || req.body.password == "") {
         res.redirect('/join');
     } else {
         const sqlconnection = new Connection(config);
@@ -38,8 +38,8 @@ exports.addUser = (req, res) => {
                             let user = {
                                 UserName: req.body.username,
                                 EncPassword: my_hash,
-                                UserDescription: "This is my user Bio!",
-                                pfp: 1
+                                UserDescription: req.body.bio,
+                                pfp: req.body.pfp
                             };
                             const bulkLoad = sqlconnection.newBulkLoad('LibUser', options, function (error, rowCount) {
                                 console.log('inserted %d rows', rowCount);
