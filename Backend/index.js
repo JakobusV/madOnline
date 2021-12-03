@@ -6,6 +6,8 @@ const expressSession = require('express-session');
 const loginAuth = require('./scripts/loginAuth');
 const newUser = require('./scripts/newUser');
 const newLib = require('./scripts/newLib');
+const { passOffLib } = require('./scripts/regexLib');
+const listLibs = require('./scripts/listLibs');
 
 const app = express();
 
@@ -50,5 +52,7 @@ app.get('/logout', checkAuth, (req, res) => {
         }
     });
 });
+
+app.get('/api', checkAuth, listLibs.getAll);
 
 app.listen(3000);
