@@ -21,7 +21,6 @@
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
-    "keytar": "^7.7.0",
     "mongodb": "^4.2.1",
     "pug": "^3.0.2"
   },
