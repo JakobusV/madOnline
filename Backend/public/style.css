@@ -134,6 +134,38 @@
         }
 
 /*================================= PLAY PAGE CSS ========================================*/
+    .play-lib-box {
+        border: 2px solid #333;
+        width: 60;
+        height: 10;
+        font-size:large;
+    }
+
+    .text-box-play {
+        text-align: center;
+        padding: 5px;
+        width: 70%;
+        margin: auto;
+        margin-top: 15px;
+        font-size: 22px;
+        font-family: 'Outfit', sans-serif;
+    }
+
+
+    .done-with-lib-button {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 2px solid #aedb81;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 8px;
+        box-sizing: border-box;
+        text-decoration: none;
+        color: #333333;
+        background-color: transparent;
+        text-align: center;
+        transition: all 0.2s;
+    }
+    
 /*================================= CREATE PAGE CSS ======================================*/
         .create-lib-box {
             border: 2px solid #333;
