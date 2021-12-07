@@ -1,21 +1,3 @@
-const { Connection, Request, TYPES } = require("tedious");
-const bcrypt = require("bcryptjs");
-
-const config = {
-    authentication: {
-        options: {
-            userName: "Madmin", 
-            password: "JJCZ2023-"
-        },
-        type: "default"
-    },
-    server: "pro150server.database.windows.net", 
-    options: {
-        rowCollectionOnRequestCompletion: true,
-        database: "MadLibs", 
-        encrypt: true
-    }
-};
 
 const options = { keepNulls: true };
 let readLibID

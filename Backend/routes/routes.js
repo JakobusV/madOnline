@@ -31,6 +31,13 @@ exports.createNewUser = (req, res) => {
     });
 }
 
+// exports.playLib = (req, res) => {
+//     res.render('playLib', {
+//         title: "Play Lib"
+//         , config
+//     });
+// }
+
 exports.editUser = async (req, res) => {
     await client.connect();
     const User = await collectionUser.findOne({ "UserName": req.session.user.username });

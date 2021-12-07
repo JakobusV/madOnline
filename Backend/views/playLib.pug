@@ -1,0 +1,18 @@
+extends layout 
+
+block navHeader 
+    include includes/navHeader.pug 
+    h3(class='header')=""   
+        form(action="/play", method="post" id="create-lib") 
+            div(class='instructions')
+                p INSTRUCTIONS 
+                p Fill each blank with the appropriate wording and then submit your Lib
+            
+            div(class='text-box-play')
+            
+                input(type='text' class='play-lib-box' form="create-lib" name='content' placeholder = "adjective")
+                input(type='text' class='play-lib-box' form="create-lib" name='content' placeholder = "noun")
+                input(type='text' class='play-lib-box' form="create-lib" name='content' placeholder = "verb")
+
+            div
+                input(class='done-with-lib-button' id='played-lib' type='submit' value='Submit Your Lib!')
