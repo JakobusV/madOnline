@@ -17,18 +17,20 @@ exports.addUser = async (req, res) => {
         console.log("newUser method: addUser");
         await client.connect();
         if (await collection.findOne({ "UserName": req.body.username })) {
+            await client.close();
             res.redirect('/join');
+        } else {
+            let hash = bcrypt.hashSync(req.body.password, salt);
+            let user = {
+                UserName: req.body.username,
+                Password: hash,
+                Description: req.body.bio,
+                pfp: req.body.pfp
+            };
+            const insertResult = await collection.insertOne(user);
+            console.log(insertResult);
+            client.close();
+            res.redirect('/');
         }
-        let hash = bcrypt.hashSync(req.body.password, salt);
-        let user = {
-            UserName: req.body.username,
-            Password: hash,
-            Description: req.body.bio,
-            pfp: req.body.pfp
-        };
-        const insertResult = await collection.insertOne(user);
-        console.log(insertResult);
-        client.close();
-        res.redirect('/');
     }
 }

@@ -1,5 +1,6 @@
 const config = require('../config.json');
 const {MongoClient, ObjectId} = require('mongodb');
+const { passOffLib } = require('../scripts/regexLib');
 
 const url = 'mongodb+srv://admin:admin@cluster0.up6aq.mongodb.net/myData?retryWrites=true&w=majority';
 const client = new MongoClient(url);
@@ -41,11 +42,35 @@ exports.editUser = async (req, res) => {
     });
 }
 
-exports.play = (req, res) => {
+exports.playShuffle = async (req, res) => {
+    await client.connect();
+    // const PlayedLibs 
+    const AllLib = await collectionLib.find({}).toArray();
+    await client.close();
     res.render('play', {
         title: "Mad-Lib!", profile: req.session.user.username
         , config
     });
+}
+
+exports.play = async (req, res) => {
+    await client.connect();
+    const Lib = await collectionLib.findOne({ "_id":ObjectId(req.params.id) });
+    await client.close();
+    console.log(Lib);
+    const blanks = await passOffLib(Lib.Content);
+    res.render('enterBlank', {
+        title: "Enter In The Blanks!"
+        , blanks
+        , config
+    });
+}
+
+exports.starwars = async (req, res) => {
+    res.render('starWars', {
+        title: "Star-Wars"
+        , config
+    })
 }
 
 exports.viewLib = (req, res) => {
