@@ -4,34 +4,51 @@ block navHeader
     include includes/navHeader.pug
 
 block content 
-    div(class='header')
-        h3="It's your profile"
-    div(class='edit-profile-btn')
-        input(class='profile-button' id='edit-profile' type='submit' value='Edit Profile')
+    div(id='profile-header' class='header')
+        h2=User.UserName
+        h4="'s Profile"
+        img(src="/images/profile_pictures/"+User.pfp+".png", alt=User.pfp id='profile-image')
+    if (profile == User.UserName)
+        div(class='edit-profile-btn')
+            form(method='GET', action='/edit')
+                input(class='profile-button' id='edit-profile' type='submit' value='Edit Profile')
     div(class='content')
-        h2='Liked Libs'
+        h2='Made Libs'
         table(class='profile-table')
-            thead 
-                tr
-                    th Name 
-                    th Creator
-            tbody 
-                tr 
-                    td Uncle Lester's Out House 
-                    td Mad-Liberace
-                tr 
-                    td Day At the Zoo
-                    td LongTrunk
-                    
-    div(class='content')
-        h2='Saved Libs'
-        table(class='profile-table')
-            thead 
-                tr 
-                    th Name 
-            tbody
-                tr
-                    td My First Banana 
-                tr 
-                    td My Second Guava
+            if (MadeLibs.length > 0)
+                thead 
+                    tr
+                        th Name 
+                        th Creator
+                tbody 
+                    each item in MadeLibs 
+                        tr 
+                            td 
+                                a(href='/view/'+item._id) #{item.Title} 
+                            td 
+                                a(href='/profile/'+item.Creator) #{item.Creator} 
+            else
+                thead 
+                    tr 
+                        th We didn't find any Libs here, sorry!
+    if (profile == User.UserName)
+        div(class='content')
+            h2='Saved Libs'
+            table(class='profile-table')
+                if (SavedLibs.length > 0)
+                    thead 
+                        tr
+                            th Name 
+                            th Creator
+                    tbody 
+                        each item in SavedLibs 
+                            tr 
+                                td 
+                                    a(href='/view/'+item._id) #{item.Title} 
+                                td 
+                                    a(href='/profile/'+item.Creator) #{item.Creator} 
+                else
+                    thead 
+                        tr 
+                            th We didn't find any Libs here, sorry!
     script(src='/populateProfile.js')

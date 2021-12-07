@@ -8,6 +8,7 @@ const newUser = require('./scripts/newUser');
 const newLib = require('./scripts/newLib');
 const { passOffLib } = require('./scripts/regexLib');
 const listLibs = require('./scripts/listLibs');
+const editUser = require('./scripts/editUser');
 
 const app = express();
 
@@ -34,12 +35,15 @@ const urlencodedParser = express.urlencoded({
     extended: false
 });
 
+app.get('/lost', (req, res) => {res.render('lost', {title: "404 Not Found"})});
 app.get('/', routes.login);
 app.post('/', urlencodedParser, loginAuth.checkLogin);
 app.get('/join', routes.createNewUser);
 app.post('/join', urlencodedParser, newUser.addUser);
+app.get('/edit', routes.editUser);
+app.post('/join', urlencodedParser, editUser.updateUser);
 app.get('/home', checkAuth, routes.home);
-app.get('/profile', checkAuth, routes.profile);
+app.get('/profile/:id', checkAuth, routes.profile);
 app.get('/play', checkAuth, routes.play);
 app.get('/make', checkAuth, routes.createLib);
 app.post('/make', urlencodedParser, checkAuth, newLib.addLib);

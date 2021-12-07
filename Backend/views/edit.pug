@@ -4,21 +4,22 @@ block content
     div(class='header')
         h3 Mad-Libs Online
     div(id="create-form" class="create-form")
-        form(action='/join' method='post' id="newUser")
+        form(action='/update' method='post' id="editUser")
             p Username:
                 br
-                input(type="text" name='username')
-            p Password:
+                input(type="text" name='username' value=User.UserName)
+            p New Password:
                 br
-                input(type="password" name='password')
+                input(type="password" name='password') 
             p Confirm Password:
                 br
                 input(type="password" name='confPass')
             p Bio 
                 br
-                textarea(rows='5' cols='24' form="newUser" maxLength="300" name="bio")
+                textarea(rows='5' cols='24' form="editUser" maxLength="300" name="bio" value=User.Description) #{User.Description}
             label(for='pfp') Profile Picture Selection
                 select(name='pfp' class='pfp')
+                    option(selected=User.pfp) #{User.pfp}
                     option(value="1") 1
                     option(value="2") 2
                     option(value="3") 3
@@ -29,4 +30,4 @@ block content
                 br
                 br
 
-            input(class='login-btns' type="submit" value='Create Account')
+            input(class='login-btns' type="submit" value='Update Account')

@@ -1,9 +1,11 @@
 header 
-    div(class="nav-options")
+    div(class="nav-options")  
         a(href="/home")
             img(class="menu_img" src='/images/mloLogo.png' alt="Mad-Lib Online Logo" width="150px")
         each item in config.menu 
-            a(class="nostyle" href=item[1] target=item[2])
-                    div(class='menu_item' style={backgroundColor: item[3]})=item[0]
-    
-        
+            if (item[0] == "Profile")
+                a(class="nostyle" href=item[1]+ "/" +profile target=item[2])
+                        div(class='menu_item' style={backgroundColor: item[3]})=item[0]
+            else 
+                a(class="nostyle" href=item[1] target=item[2])
+                        div(class='menu_item' style={backgroundColor: item[3]})=item[0]
