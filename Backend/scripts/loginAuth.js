@@ -1,63 +1,45 @@
-const { Connection, Request } = require("tedious");
 const bcrypt = require("bcryptjs");
+const {MongoClient, ObjectId} = require('mongodb');
 
-const config = {
-    authentication: {
-        options: {
-            userName: "Madmin", 
-            password: "JJCZ2023-"
-        },
-        type: "default"
-    },
-    server: "pro150server.database.windows.net", 
-    options: {
-        rowCollectionOnRequestCompletion: true,
-        database: "MadLibs", 
-        encrypt: true
-    }
-};
+const url = 'mongodb+srv://admin:admin@cluster0.up6aq.mongodb.net/myData?retryWrites=true&w=majority';
+const client = new MongoClient(url);
 
+const dbName = 'madOnline';
+const db = client.db(dbName);
+const collection = db.collection('LibUser');
 
-exports.checkLogin = (req, res) => {
-    const sqlconnection = new Connection(config);
-    console.log("Log auth method: checkLogin");
+exports.checkLogin = async (req, res) => {
+    console.log("hello :: /login=post");
     try {
-        var retval = '';
-        sqlconnection.on('connect', (err) => {
-            if(err) {
-                console.log(err.message)
-            } else {
-                const request = new Request("Select * from LibUser where UserName=\'" + req.body.username + "\'", function(err, rowCount, rows) {
-                    if (err){
-                        console.log('Error');
-                        sqlconnection.close();
-                    } else {
-                        sqlconnection.close();
-                        if(rows[0]) {
-                            bcrypt.compare(req.body.password, rows[0][2].value, (err, result) => {
-                                if(result) {
-                                    req.session.user = {
-                                        isAuthenticated: true,
-                                        id: rows[0][0].value,
-                                        username: rows[0][1].value
-                                    }
-                                    console.log("SUCCESS :: CORRECT PASSWORD");
-                                    res.redirect('/profile');
-                                } else {
-                                    console.log("FAILED :: WRONG PASSWORD");
-                                    res.redirect('/');
-                                }
-                            });
-                        } else {
-                            res.redirect('/');
+        await client.connect();
+        console.log("connected successful :: /login=post");
+        if(req.body.password === null || req.body.password == "") {
+            console.log("FAILED :: BLANK PASSWORD");
+            res.redirect('/');
+        } else {
+            try {
+                const matchingUsername = await collection.findOne({"UserName" : req.body.username});
+                bcrypt.compare(req.body.password, matchingUsername.Password, (err, result) => {
+                    if(result) {
+                        req.session.user = {
+                            isAuthenticated: true,
+                            username: req.body.username,
+                            id: matchingUsername._id
                         }
+                        console.log(req.session.user);
+                        console.log("SUCCESS :: CORRECT PASSWORD");
+                        res.redirect('/profile/' + req.body.username);
+                    } else {
+                        console.log("FAILED :: WRONG PASSWORD");
+                        res.redirect('/');
                     }
                 });
-                sqlconnection.execSql(request);
+            } catch (excep) {
+                console.log("FAILED :: WRONG USER");
+                res.redirect('/');
             }
-        });
-        sqlconnection.connect();
-    } catch (err) {
-        console.log("Log auth method: checkLogin: Error");
+        }
+    } catch(err) {
+        res.redirect('/');
     }
 }
