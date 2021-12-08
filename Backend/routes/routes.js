@@ -70,7 +70,7 @@ exports.starwars = async (req, res) => {
     res.render('starWars', {
         title: "Star-Wars"
         , config
-    })
+    });
 }
 
 exports.viewLib = (req, res) => {
