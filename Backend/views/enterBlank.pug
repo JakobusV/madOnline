@@ -1,6 +1,9 @@
 extends layout 
 
-block content   
-    h3=title 
-    each item in blanks 
-        h4=item.type
+block content
+    div(class='instructions')
+        h2=details.title 
+        h4="By " + details.creator
+    div(class="instructions")
+        each item in blanks 
+            p=item.type
