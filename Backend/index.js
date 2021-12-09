@@ -47,7 +47,7 @@ app.post('/update', checkAuth, urlencodedParser, editUser.updateUser)
 app.get('/home', checkAuth, routes.home);
 app.get('/profile/:id', checkAuth, routes.profile);
 app.get('/play', checkAuth, routes.playShuffle);
-app.get('/play/:id', urlencodedParser, checkAuth, routes.viewLib);
+app.get('/play/:id', urlencodedParser, checkAuth, routes.play);
 app.post('/play/:id', urlencodedParser, checkAuth, submitLib.finishLib);
 app.get('/view/:id', urlencodedParser, checkAuth, routes.viewLib);
 app.get('/make', checkAuth, routes.createLib);
