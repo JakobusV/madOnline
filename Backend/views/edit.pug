@@ -22,7 +22,7 @@ block content
                 textarea(rows='5' cols='24' form="editUser" maxLength="300" name="bio" value=User.Description) #{User.Description}
             label(for='pfp') Profile Picture Selection
                 select(name='pfp' class='pfp')
-                    option(selected=User.pfp) #{User.pfp}
+                    option(selected=User.pfp, value=User.pfp) Current PFP
                     option(value = "1") Yellow Smile
                     option(value = "2") Green Tophat
                     option(value = "3") Blue Curly
