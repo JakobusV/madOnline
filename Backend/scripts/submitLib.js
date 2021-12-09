@@ -35,12 +35,14 @@ exports.finishLib = async (req, res) => {
 
 exports.saveLib = async (req, res) => {
     try {
-        console.log(req.body.details);
-        console.log(req.body.content);
         let doneLib = {
-            Details: req.body.details,
+            Details: JSON.parse(req.body.details),
             Content: req.body.content,
+            Player: req.session.user.username
         }
+        console.log(doneLib.Details);
+        console.log("doneLib:");
+        console.log(doneLib);
         // await client.connect();
         // const finished = await collectionDone.insertOne(doneLib);
         // console.log(finished);
