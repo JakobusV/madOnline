@@ -62,6 +62,7 @@ exports.play = async (req, res) => {
     const details = {}
     details.title = Lib.Title;
     details.creator = Lib.Creator;
+    details.id = ObjectId(Lib._id);
     const blanks = await passOffLib(Lib.Content);
     res.render('enterBlank', {
         title: "Enter In The Blanks!"

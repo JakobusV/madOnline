@@ -24,7 +24,7 @@ block content
                     each item in MadeLibs 
                         tr 
                             td 
-                                a(href='/view/'+item._id) #{item.Title} 
+                                a(href='/play/'+item._id) #{item.Title} 
                             td 
                                 a(href='/profile/'+item.Creator) #{item.Creator} 
             else
@@ -51,4 +51,3 @@ block content
                     thead 
                         tr 
                             th We didn't find any Libs here, sorry!
-    script(src='/populateProfile.js')
