@@ -47,11 +47,12 @@ app.post('/update', checkAuth, urlencodedParser, editUser.updateUser)
 app.get('/home', checkAuth, routes.home);
 app.get('/profile/:id', checkAuth, routes.profile);
 app.get('/play', checkAuth, routes.playShuffle);
-app.get('/play/:id', checkAuth, routes.play);
+app.get('/play/:id', urlencodedParser, checkAuth, routes.viewLib);
 app.post('/play/:id', urlencodedParser, checkAuth, submitLib.finishLib);
-app.get('/view/:id', checkAuth, routes.viewLib);
+app.get('/view/:id', urlencodedParser, checkAuth, routes.viewLib);
 app.get('/make', checkAuth, routes.createLib);
 app.post('/make', urlencodedParser, checkAuth, newLib.addLib);
+app.post('/save', urlencodedParser, checkAuth, submitLib.saveLib);
 app.get('/logout', checkAuth, (req, res) => {
     req.session.destroy(err => {
         if(err) {

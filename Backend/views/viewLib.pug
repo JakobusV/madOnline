@@ -12,3 +12,11 @@ block content
         div(class='menu_item' style={backgroundColor: '#300'})="Report"
     div(class='instructions')
         h2=content.madlib
+        div(class="nav-options")  
+            form(action="", method="post") 
+                input(type="hidden", name="details" value=details)
+                input(type="hidden", name="content" value=content.madlib)
+                a(class="nostyle" href="/save")
+                    div(class='menu_item')="Save Lib"
+            a(class="nostyle" href="/play")
+                div(class='menu_item' )="New Lib!"

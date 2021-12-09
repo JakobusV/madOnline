@@ -12,6 +12,8 @@ block content
         div(class='edit-profile-btn')
             form(method='GET', action='/edit')
                 input(class='profile-button' id='edit-profile' type='submit' value='Edit Profile')
+    div(class='instructions')
+            p= User.Description
     div(class='content')
         h2='Made Libs'
         table(class='profile-table')

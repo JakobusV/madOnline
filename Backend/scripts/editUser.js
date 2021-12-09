@@ -13,9 +13,9 @@ let salt = bcrypt.genSaltSync(10);
 exports.updateUser = async (req, res) => {
     let changeList = {};
     let hash;
-    if(req.body.username != null && req.body.username != "") {
-        changeList["UserName"] = req.body.username;
-    }
+    // if(req.body.username != null && req.body.username != "") {
+    //     changeList["UserName"] = req.body.username;
+    // }
     if(req.body.password != null && req.body.password != "" && req.body.password == req.body.confPass) {
         hash = bcrypt.hashSync(req.body.password, salt);
         changeList["Password"] = hash;
@@ -28,16 +28,16 @@ exports.updateUser = async (req, res) => {
     }
     console.log("editUser method: updateUser");
     await client.connect();
-    if (await collection.findOne({ "UserName": req.body.username })) {
-        res.redirect('/edit');
-    }
+    // if (await collection.findOne({ "UserName": req.body.username })) {
+    //     res.redirect('/edit');
+    // }
     console.log(changeList);
     try {
         const updateResult = await collection.updateOne(
                 { "UserName": req.session.user.username },
                 { $set: changeList }
             );
-        req.session.user.username = req.body.username;
+        // req.session.user.username = req.body.username;
         console.log(updateResult);
     } catch (err) {
         console.log(err);

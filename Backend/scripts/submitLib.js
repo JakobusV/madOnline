@@ -9,6 +9,7 @@ const dbName = 'madOnline';
 const db = client.db(dbName);
 const collectionLib = db.collection('Lib');
 const collectionUser = db.collection('LibUser');
+const collectionDone = db.collection('DoneLib');
 
 exports.finishLib = async (req, res) => {
     try {
@@ -21,13 +22,32 @@ exports.finishLib = async (req, res) => {
         details.id = ObjectId(Lib._id);
         const content = await fillOutLib(Lib.Content, req.body);
         res.render('viewLib', {
-            title: "View MadLib"
+            title: "View MadLib", profile: req.session.user.username
             , config
             , details
             , content
         });
     } catch (error) {
         console.log(error);
+        res.redirect('/lost');
+    }
+}
+
+exports.saveLib = async (req, res) => {
+    try {
+        console.log(req.body.details);
+        console.log(req.body.content);
+        let doneLib = {
+            Details: req.body.details,
+            Content: req.body.content,
+        }
+        // await client.connect();
+        // const finished = await collectionDone.insertOne(doneLib);
+        // console.log(finished);
+        // await client.close();
+        res.redirect('/profile/' + req.session.user.username);
+    } catch (err) {
+        console.log(err);
         res.redirect('/lost');
     }
 }
