@@ -31,12 +31,12 @@ exports.createNewUser = (req, res) => {
     });
 }
 
-// exports.playLib = (req, res) => {
-//     res.render('playLib', {
-//         title: "Play Lib"
-//         , config
-//     });
-// }
+exports.playLib = (req, res) => {
+    res.render('playLib', {
+        title: "Play Lib"
+        , config
+    });
+}
 
 exports.editUser = async (req, res) => {
     await client.connect();

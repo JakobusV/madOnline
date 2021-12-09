@@ -10,6 +10,7 @@ const { passOffLib } = require('./scripts/regexLib');
 const listLibs = require('./scripts/listLibs');
 const editUser = require('./scripts/editUser');
 const submitLib = require('./scripts/submitLib');
+const play = require('./scripts/play');
 
 const app = express();
 
@@ -49,6 +50,8 @@ app.get('/profile/:id', checkAuth, routes.profile);
 app.get('/play', checkAuth, routes.playShuffle);
 app.get('/play/:id', checkAuth, routes.play);
 app.post('/play/:id', checkAuth, submitLib.finishLib);
+app.post('/play', urlencodedParser, play.displayRandomLib);
+app.get('/playLib', checkAuth, routes.playLib);
 app.get('/view/:id', checkAuth, routes.viewLib);
 app.get('/make', checkAuth, routes.createLib);
 app.post('/make', urlencodedParser, checkAuth, newLib.addLib);
