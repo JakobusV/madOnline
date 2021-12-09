@@ -37,11 +37,11 @@ exports.updateUser = async (req, res) => {
                 { "UserName": req.session.user.username },
                 { $set: changeList }
             );
-            req.session.user.username = req.body.username;
+        req.session.user.username = req.body.username;
+        console.log(updateResult);
     } catch (err) {
         console.log(err);
     }
-    console.log(updateResult);
     client.close();
     res.redirect('/profile/' + req.session.user.username);
 }

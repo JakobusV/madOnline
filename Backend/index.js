@@ -42,13 +42,13 @@ app.post('/', urlencodedParser, loginAuth.checkLogin);
 app.get('/star', routes.starwars);
 app.get('/join', routes.createNewUser);
 app.post('/join', urlencodedParser, newUser.addUser);
-app.get('/edit', routes.editUser);
-app.post('/join', urlencodedParser, editUser.updateUser);
+app.get('/edit', checkAuth, routes.editUser);
+app.post('/update', checkAuth, urlencodedParser, editUser.updateUser)
 app.get('/home', checkAuth, routes.home);
 app.get('/profile/:id', checkAuth, routes.profile);
 app.get('/play', checkAuth, routes.playShuffle);
 app.get('/play/:id', checkAuth, routes.play);
-app.post('/play/:id', checkAuth, submitLib.finishLib);
+app.post('/play/:id', urlencodedParser, checkAuth, submitLib.finishLib);
 app.get('/view/:id', checkAuth, routes.viewLib);
 app.get('/make', checkAuth, routes.createLib);
 app.post('/make', urlencodedParser, checkAuth, newLib.addLib);

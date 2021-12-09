@@ -44,13 +44,14 @@ exports.editUser = async (req, res) => {
 
 exports.playShuffle = async (req, res) => {
     await client.connect();
-    // const PlayedLibs 
     const AllLib = await collectionLib.find({}).toArray();
     await client.close();
-    res.render('play', {
-        title: "Mad-Lib!", profile: req.session.user.username
-        , config
-    });
+    const keys = Object.keys(AllLib);
+    const chosenLib = Math.floor(Math.random() * keys.length);
+    const urlPlay = '/play/' + ObjectId(AllLib[keys[chosenLib]]._id)
+    console.log(AllLib[keys[chosenLib]]);
+    console.log(urlPlay);
+    res.redirect(urlPlay);
 }
 
 exports.play = async (req, res) => {
@@ -58,9 +59,14 @@ exports.play = async (req, res) => {
     const Lib = await collectionLib.findOne({ "_id":ObjectId(req.params.id) });
     await client.close();
     console.log(Lib);
+    const details = {}
+    details.title = Lib.Title;
+    details.creator = Lib.Creator;
+    details.id = ObjectId(Lib._id);
     const blanks = await passOffLib(Lib.Content);
     res.render('enterBlank', {
         title: "Enter In The Blanks!"
+        , details
         , blanks
         , config
     });

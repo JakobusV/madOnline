@@ -1,7 +1,11 @@
 extends layout 
 
+block navHeader 
+    include includes/navHeader.pug
+
 block content
-div(class='header')
-        h3="Star Wars Knowledge of the Day"
+    div(class='header')
+        h3="Star Wars Character of the Day"
     div(class='instructions')
-        
+        p(id="starName")
+    script(src='populate.js')

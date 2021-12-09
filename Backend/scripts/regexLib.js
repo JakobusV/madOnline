@@ -20,3 +20,19 @@ exports.passOffLib = async (content) => {
     console.log(allBlanks);
     return allBlanks;
 }
+
+exports.fillOutLib = async (content, reqBody) => {
+    let finalText = content;
+    let blankCount = 0;
+    let entryCount = content.match(gather);
+    entryCount.forEach(entry => {
+        blankCount++;
+        finalText = finalText.replace(entry, reqBody["i"+blankCount]);
+    });
+    let allBlanks = {
+        madlib: finalText,
+        replaceCount: blankCount,
+    };
+    console.log(allBlanks);
+    return allBlanks;
+}
