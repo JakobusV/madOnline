@@ -62,6 +62,9 @@ app.get('/logout', checkAuth, (req, res) => {
     });
 });
 
+app.get('/Starapi', async (req, res) => {
+    console.log('RUNNING TO THE API BE RIGHT BACK');
+});
 app.get('/api', checkAuth, listLibs.getAll);
 
 app.listen(process.env.PORT || 3000);

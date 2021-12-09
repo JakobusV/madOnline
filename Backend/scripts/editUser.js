@@ -17,8 +17,8 @@ exports.updateUser = async (req, res) => {
         changeList["UserName"] = req.body.username;
     }
     if(req.body.password != null && req.body.password != "" && req.body.password == req.body.confPass) {
-        changeList["Password"] = req.body.password;
         hash = bcrypt.hashSync(req.body.password, salt);
+        changeList["Password"] = hash;
     }
     if(req.body.bio != null && req.body.bio != "") {
         changeList["Description"] = req.body.bio;
