@@ -36,7 +36,7 @@ exports.editUser = async (req, res) => {
     const User = await collectionUser.findOne({ "UserName": req.session.user.username });
     await client.close();
     res.render('edit', {
-        title: "Edit Settings"
+        title: "Edit Settings", profile: req.session.user.username
         , config
         , User
     });
@@ -65,7 +65,7 @@ exports.play = async (req, res) => {
     details.id = ObjectId(Lib._id);
     const blanks = await passOffLib(Lib.Content);
     res.render('enterBlank', {
-        title: "Enter In The Blanks!"
+        title: "Enter In The Blanks!", profile: req.session.user.username
         , details
         , blanks
         , config
