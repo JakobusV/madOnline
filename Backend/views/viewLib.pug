@@ -4,13 +4,13 @@ block navHeader
     include includes/navHeader.pug
 
 block content
-    div(class='instructions')
+    div(class='finished-details')
         h2=details.title 
         h4="By " 
             a(href='/profile/'+details.creator)=details.creator
         h4=" and You!"
-        div(class='menu_item' style={backgroundColor: '#300'})="Report"
-    div(class='instructions')
+        div(class='report-button')="Report"
+    div(class='finished-lib')
         h2=content.madlib
         div(class="nav-options")  
             form(action="", method="post") 

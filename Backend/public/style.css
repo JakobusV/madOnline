@@ -167,6 +167,58 @@
             border-color: #FFF;
             cursor: pointer;
         }
+/*================================= VIEW PAGE CSS ========================================*/
+    
+.finished-lib {
+        text-align: center;
+        border: 3px solid #FFF;
+        border-radius: 10px;
+        padding: 8px;
+        width: 60%;
+        margin: auto;
+        margin-top: 15px;
+        font-size: 25px;
+        background-color: #CCF;
+    }
+
+    .finished-details {
+        text-align: center;
+        border: 3px solid #FFF;
+        border-radius: 8px;
+        padding: 5px;
+        width: 35%;
+        margin: auto;
+        margin-top: 15px;
+        font-size: 15px;
+        height: 200px;
+    }
+
+    .report-button {
+        padding: 10px;
+        margin:0 auto;
+        display: block;
+        width: 100px;
+        height: 20px;
+        font-size: 18px;
+        text-decoration: none;
+        color: #433;
+        background-color: transparent;
+        border: 4px solid #caa;
+        border-radius: 8px;
+        letter-spacing: 2px;
+        text-align: center;
+        position: relative;
+        
+        /*transition: all 0.2s ease-in-out;*/
+}
+
+    .report-button:hover {
+        cursor: pointer;
+        background-color: #000;
+        box-shadow: 0 2px 10px #e3b5e8;
+        border-color: #800;
+        color: #F00;
+    }
 /*================================= CREATE PAGE CSS ======================================*/
         .create-lib-box {
             border: 2px solid #333;
