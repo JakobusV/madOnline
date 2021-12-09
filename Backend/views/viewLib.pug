@@ -1,4 +1,14 @@
 extends layout 
 
+block navHeader 
+    include includes/navHeader.pug
+
 block content
-    h3='Check this out'
+    div(class='instructions')
+        h2=details.title 
+        h4="By " 
+            a(href='/profile/'+details.creator)=details.creator
+        h4=" and You!"
+        div(class='menu_item' style={backgroundColor: '#300'})="Report"
+    div(class='instructions')
+        h2=content.madlib

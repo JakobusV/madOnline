@@ -1,9 +1,24 @@
 extends layout 
 
+block navHeader 
+    include includes/navHeader.pug
+
 block content
     div(class='instructions')
         h2=details.title 
-        h4="By " + details.creator
+        h4="By " 
+            a(href='/profile/'+details.creator)=details.creator
+        div(class='menu_item' style={backgroundColor: '#300'})="Report"
     div(class="instructions")
-        each item in blanks 
-            p=item.type
+        form(action="/play/" + details.id, method="post") 
+            each item in blanks 
+                br
+                label(for=Object.keys(blanks).find(key => blanks[key] === item))=item.type
+                br
+                if(item.hint)
+                    input(type="text", name="i"+Object.keys(blanks).find(key => blanks[key] === item), placeholder=item.hint)
+                else 
+                    input(type="text", name="i"+Object.keys(blanks).find(key => blanks[key] === item))
+                br
+            br
+            input(type="submit", value="Generate!")
