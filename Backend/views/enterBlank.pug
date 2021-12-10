@@ -8,7 +8,7 @@ block content
         h2=details.title 
         h4="By " 
             a(href='/profile/'+details.creator)=details.creator
-        div(class='menu_item' style={backgroundColor: '#300'})="Report"
+        div(class='report-button')="Report"
     div(class="instructions")
         form(action="/play/" + details.id, method="post") 
             each item in blanks 
