@@ -13,10 +13,11 @@ block content
     div(class='finished-lib')
         h2=content.madlib
         div(class="nav-options")  
-            form(id="center1" action="", method="post") 
+            form(action="/save", method="post") 
                 input(type="hidden", name="details" value=details)
                 input(type="hidden", name="content" value=content.madlib)
-                a(class="noclass" href="/save")
-                    div(class='menu_item')="Save Lib"
-            a(id="center2" class="noclass" href="/play")
-                div(class='menu_item' )="New Lib!"
+                input(type="submit", value="Save Lib")
+            form(action="/play", method="get")
+                input(type="submit", value="New Lib")
+            form(action="/play" + details.creator, method="get")
+                input(type="submit", value="Play Again")
