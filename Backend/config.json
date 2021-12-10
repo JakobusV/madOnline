@@ -6,6 +6,8 @@
         , ["Profile", "/profile", "", "#FF1"]
         , ["Logout", "/logout", "", "#F1F"]
         , ["GitHub", "https://github.com/JakobusV/madOnline", "_blank", "#F00"]
+        , ["Star Wars", "/star", "", "#0FF"]
+
     ] ,
     "profile-dropdown": [
         ["Your Libs", "/profile", ""]
