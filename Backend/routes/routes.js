@@ -9,6 +9,7 @@ const dbName = 'madOnline';
 const db = client.db(dbName);
 const collectionLib = db.collection('Lib');
 const collectionUser = db.collection('LibUser');
+const collectionDone = db.collection('DoneLib');
 
 exports.login = (req, res) => {
     res.render('login', {
@@ -79,11 +80,25 @@ exports.starwars = async (req, res) => {
     });
 }
 
-exports.viewLib = (req, res) => {
-    res.render('viewLib', {
-        title: "View Madlib", profile: req.session.user.username
-        , config
-    });
+exports.viewLib = async (req, res) => {
+    try {
+        await client.connect();
+        const done = await collectionDone.findOne({ "_id":ObjectId(req.params.id) });
+        await client.close();
+        const content = {
+            madlib: done.Content
+        }
+        res.render('viewLib', {
+            title: "View Madlib", profile: req.session.user.username
+            , config
+            , details: done.Details
+            , content: content
+            , player: done.Player
+        });
+    } catch(err) {
+        console.log(err);
+        res.redirect('/lost');
+    }
 }
 
 exports.createLib = (req, res) => {
@@ -98,16 +113,34 @@ exports.profile = async (req, res) => {
         await client.connect();
         const User = await collectionUser.findOne({ "UserName": req.params.id });
         const madeLibs = await collectionLib.find({ "Creator": User.UserName }).toArray();
+        const doneLibs = await collectionDone.find({ "Player": User.UserName}).toArray();
         await client.close();
+
         res.render('profile', {
             title: "Mad-Profile", profile: req.session.user.username
             , config
             , User
             , MadeLibs: madeLibs
-            , SavedLibs: 0
+            , SavedLibs: doneLibs
         });
     } catch(err) {
         console.log(err);
         res.redirect('/lost');
+    }
+}
+
+exports.deleteLib = async (req, res) => {
+    try {
+        await client.connect();
+        const u = await collectionUser.findOne({ "UserName": req.session.user.username});
+        const dl = await collectionDone.findOne({ "_id": ObjectId(req.params.id)});
+        if(dl.Player == u.UserName) {
+            const doneLibs = await collectionDone.deleteOne({ "_id": ObjectId(req.params.id)});
+        } 
+        await client.close();
+        res.redirect('/profile/' + req.session.user.username)
+    } catch(err) {
+        console.log(err);
+        res.redirect('/home');
     }
 }

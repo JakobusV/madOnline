@@ -24,8 +24,10 @@ exports.finishLib = async (req, res) => {
         res.render('viewLib', {
             title: "View MadLib", profile: req.session.user.username
             , config
+            , player: req.session.user.username
             , details
             , content
+            , newLib: 1
         });
     } catch (error) {
         console.log(error);
@@ -40,13 +42,10 @@ exports.saveLib = async (req, res) => {
             Content: req.body.content,
             Player: req.session.user.username
         }
-        console.log(doneLib.Details);
-        console.log("doneLib:");
-        console.log(doneLib);
-        // await client.connect();
-        // const finished = await collectionDone.insertOne(doneLib);
-        // console.log(finished);
-        // await client.close();
+        await client.connect();
+        const finished = await collectionDone.insertOne(doneLib);
+        console.log(finished);
+        await client.close();
         res.redirect('/profile/' + req.session.user.username);
     } catch (err) {
         console.log(err);

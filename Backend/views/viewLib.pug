@@ -8,16 +8,18 @@ block content
         h2=details.title 
         h4="By " 
             a(href='/profile/'+details.creator)=details.creator
-        h4=" and You!"
+        h4=" and "
+            a(href='/profile/'+player)=player+"!"
         div(class='report-button')="Report"
     div(class='finished-lib')
         h2=content.madlib
         div(class="nav-options")  
-            form(action="/save", method="post") 
-                input(type="hidden", name="details" value=details)
-                input(type="hidden", name="content" value=content.madlib)
-                input(type="submit", value="Save Lib")
-            form(action="/play", method="get")
-                input(type="submit", value="New Lib")
-            form(action="/play" + details.creator, method="get")
-                input(type="submit", value="Play Again")
+            form(action="/play/" + details.id, method="get")
+                input(style={margin:"0 auto"} type="submit", value="Play " + details.title)
+            if (newLib)
+                form(style={margin:"0 auto"} action="/play", method="get")
+                    input(type="submit", value="Play New Lib")
+                form(style={margin:"0 auto"} action="/save", method="post") 
+                    input(type="hidden", name="details" value=details)
+                    input(type="hidden", name="content" value=content.madlib)
+                    input(type="submit", value="Save Lib")

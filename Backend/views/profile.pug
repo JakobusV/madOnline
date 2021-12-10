@@ -26,30 +26,47 @@ block content
                     each item in MadeLibs 
                         tr 
                             td 
-                                a(href='/play/'+item._id) #{item.Title} 
+                                a(class="nostyle" href='/play/'+item._id)  
+                                    div(class='menu_item2') #{item.Title}
                             td 
-                                a(href='/profile/'+item.Creator) #{item.Creator} 
+                                a(class="nostyle" href='/profile/'+item.Creator) 
+                                    div(class='menu_item2') #{item.Creator}
             else
                 thead 
                     tr 
                         th We didn't find any Libs here, sorry!
-    if (profile == User.UserName)
-        div(class='content')
-            h2='Saved Libs'
-            table(class='profile-table')
-                if (SavedLibs.length > 0)
-                    thead 
-                        tr
-                            th Name 
-                            th Creator
-                    tbody 
-                        each item in SavedLibs 
-                            tr 
-                                td 
-                                    a(href='/view/'+item._id) #{item.Title} 
-                                td 
-                                    a(href='/profile/'+item.Creator) #{item.Creator} 
-                else
-                    thead 
+    div(class='content')
+        h2='Saved Libs'
+        table(class='profile-table')
+            if (SavedLibs.length > 0)
+                thead 
+                    tr
+                        th Original
+                        th Author
+                        th Player
+                        th
+                        if (profile == User.UserName)
+                            th X
+                tbody 
+                    each item in SavedLibs 
                         tr 
-                            th We didn't find any Libs here, sorry!
+                            td 
+                                a(class="nostyle" href='/play/'+item.Details.id)    
+                                    div(class='menu_item2') #{item.Details.title}
+                            td 
+                                a(class="nostyle" href='/profile/'+item.Details.creator) 
+                                    div(class='menu_item2') #{item.Details.creator}   
+                            td 
+                                a(class="nostyle" href='/profile/'+item.Player) 
+                                    div(class='menu_item2') #{item.Player}   
+                            td 
+                                a(class="nostyle" href='/view/'+item._id)   
+                                    div(class='menu_item2')="Mad-Lib!"
+                            if (profile == User.UserName)
+                                td 
+                                    a(class="nostyle" href='/delete/'+item._id)
+                                        div(class='menu_item2')="Delete"   
+            else
+                thead 
+                    tr 
+                        th We didn't find any Libs here, sorry!

@@ -28,6 +28,6 @@ exports.addLib = async (req, res) => {
         const insertResult = await collection.insertOne(lib);
         console.log(insertResult);
         client.close();
-        res.redirect('/profile');
+        res.redirect('/profile/'+ req.session.user.username);
     }
 }

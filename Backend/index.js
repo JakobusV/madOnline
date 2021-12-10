@@ -62,6 +62,7 @@ app.get('/logout', checkAuth, (req, res) => {
         }
     });
 });
+app.get('/delete/:id', checkAuth, routes.deleteLib);
 
 app.get('/Starapi', async (req, res) => {
     console.log('RUNNING TO THE API BE RIGHT BACK');
